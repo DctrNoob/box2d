@@ -102,6 +102,8 @@ inline b2ChainShape::b2ChainShape()
 	m_radius = b2_polygonRadius;
 	m_vertices = nullptr;
 	m_count = 0;
+	m_prevVertex.SetZero();
+	m_nextVertex.SetZero();
 	m_hasPrevVertex = false;
 	m_hasNextVertex = false;
 }
