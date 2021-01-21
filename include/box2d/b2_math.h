@@ -25,6 +25,8 @@
 
 #include "b2_settings.h"
 #include <math.h>
+#include <glm/ext/vector_float2.hpp>
+#include <glm/ext/vector_float3.hpp>
 
 /// This function is used to ensure that a floating point number is not a NaN or infinity.
 inline bool b2IsValid(float x)
@@ -43,6 +45,12 @@ struct b2Vec2
 
 	/// Construct using coordinates.
 	b2Vec2(float xIn, float yIn) : x(xIn), y(yIn) {}
+
+	// Construct from glm vector.
+	b2Vec2(const glm::vec2& f) : x(f.x), y(f.y) {}
+	
+	// Implicitly convert to glm vector.
+	operator glm::vec2() const { return glm::vec2(x, y); }
 
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; }
@@ -134,6 +142,12 @@ struct b2Vec3
 
 	/// Construct using coordinates.
 	b2Vec3(float xIn, float yIn, float zIn) : x(xIn), y(yIn), z(zIn) {}
+	
+	// Construct from glm vector.
+	b2Vec3(const glm::vec3& f) : x(f.x), y(f.y), z(f.z) {}
+	
+	// Implicitly convert to glm vector.
+	operator glm::vec3() const { return glm::vec3(x, y, z); }
 
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; z = 0.0f; }
