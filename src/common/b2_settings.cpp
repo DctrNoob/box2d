@@ -23,6 +23,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include "box2d/b2_settings.h"
+#include "ab/memory/memory.hpp"
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -32,12 +33,12 @@ b2Version b2_version = {2, 4, 0};
 // Memory allocators. Modify these to use your own allocator.
 void* b2Alloc(int32 size)
 {
-	return malloc(size);
+	return ab::G_PHYSICS_ALLOC.allocate(size);
 }
 
 void b2Free(void* mem)
 {
-	free(mem);
+	ab::G_PHYSICS_ALLOC.deallocate(mem);
 }
 
 // You can modify this to use your logging facility.

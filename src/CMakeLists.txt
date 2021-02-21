@@ -98,6 +98,8 @@ set(BOX2D_HEADER_FILES
 add_library(box2d STATIC ${BOX2D_SOURCE_FILES} ${BOX2D_HEADER_FILES})
 target_include_directories(box2d PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/../include
+	${CMAKE_CURRENT_SOURCE_DIR}/../../../inc
+	${CMAKE_CURRENT_SOURCE_DIR}/../../cereal/include
 	${CMAKE_CURRENT_SOURCE_DIR}/../../glm)
 target_include_directories(box2d PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 set_target_properties(box2d PROPERTIES
