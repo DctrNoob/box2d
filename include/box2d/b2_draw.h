@@ -36,7 +36,7 @@ struct b2Color
 	}
 	
 	// Construct from glm vector.
-	b2Color(const glm::vec4& f) : r(f.r), g(f.g), b(f.b), a(f.a) {}
+	b2Color(const glm::vec4& f) : r(f.x), g(f.y), b(f.z), a(f.w) {}
 	
 	// Implicitly convert to glm vector.
 	operator glm::vec4() const { return glm::vec4(r, g, b, a); }
