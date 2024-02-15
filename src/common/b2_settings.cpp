@@ -33,12 +33,12 @@ b2Version b2_version = {2, 4, 1};
 // Memory allocators. Modify these to use your own allocator.
 void* b2Alloc_Default(int32 size)
 {
-	return ab::memory::physics_alloc().allocate(size);
+	return ab::memory::physics_heap().allocate(size);
 }
 
 void b2Free_Default(void* mem)
 {
-	ab::memory::physics_alloc().deallocate(mem);
+	ab::memory::physics_heap().deallocate(mem);
 }
 
 // You can modify this to use your logging facility.
