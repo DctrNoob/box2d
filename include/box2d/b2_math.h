@@ -24,8 +24,6 @@
 #define B2_MATH_H
 
 #include <math.h>
-#include <glm/ext/vector_float2.hpp>
-#include <glm/ext/vector_float3.hpp>
 
 #include "b2_api.h"
 #include "b2_settings.h"
@@ -47,12 +45,10 @@ struct B2_API b2Vec2
 
 	/// Construct using coordinates.
 	b2Vec2(float xIn, float yIn) : x(xIn), y(yIn) {}
-
-	// Construct from glm vector.
-	b2Vec2(const glm::vec2& f) : x(f.x), y(f.y) {}
 	
-	// Implicitly convert to glm vector.
-	operator glm::vec2() const { return glm::vec2(x, y); }
+#ifdef B2_VEC2_CLASS_EXTRA
+	B2_VEC2_CLASS_EXTRA     // Define additional constructors and implicit cast operators from b2_user_settings.h
+#endif
 
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; }
@@ -145,12 +141,10 @@ struct B2_API b2Vec3
 	/// Construct using coordinates.
 	b2Vec3(float xIn, float yIn, float zIn) : x(xIn), y(yIn), z(zIn) {}
 	
-	// Construct from glm vector.
-	b2Vec3(const glm::vec3& f) : x(f.x), y(f.y), z(f.z) {}
+#ifdef B2_VEC3_CLASS_EXTRA
+	B2_VEC3_CLASS_EXTRA     // Define additional constructors and implicit cast operators from b2_user_settings.h
+#endif
 	
-	// Implicitly convert to glm vector.
-	operator glm::vec3() const { return glm::vec3(x, y, z); }
-
 	/// Set this vector to all zeros.
 	void SetZero() { x = 0.0f; y = 0.0f; z = 0.0f; }
 

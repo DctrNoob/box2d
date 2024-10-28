@@ -25,22 +25,21 @@
 
 #include "b2_api.h"
 #include "b2_math.h"
-#include <glm/ext/vector_float4.hpp>
+#include "b2_settings.h"
 
 /// Color for debug drawing. Each value has the range [0,1].
 struct B2_API b2Color
 {
 	b2Color() {}
+
 	b2Color(float rIn, float gIn, float bIn, float aIn = 1.0f)
 	{
 		r = rIn; g = gIn; b = bIn; a = aIn;
 	}
 	
-	// Construct from glm vector.
-	b2Color(const glm::vec4& f) : r(f.x), g(f.y), b(f.z), a(f.w) {}
-	
-	// Implicitly convert to glm vector.
-	operator glm::vec4() const { return glm::vec4(r, g, b, a); }
+#ifdef B2_COLOR_CLASS_EXTRA
+	B2_COLOR_CLASS_EXTRA     // Define additional constructors and implicit cast operators from b2_user_settings.h
+#endif
 
 	void Set(float rIn, float gIn, float bIn, float aIn = 1.0f)
 	{

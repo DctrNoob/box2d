@@ -35,7 +35,7 @@
 
 /// This is a user file that includes custom definitions of the macros, structs, and functions
 /// defined below.
-#include "b2_user_settings.h"
+#include B2_USER_SETTINGS
 
 #else
 

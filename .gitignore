@@ -1,6 +1,7 @@
 build/
 imgui.ini
 settings.ini
+.DS_Store
 .vscode/
 CMakeSettings.json
 out/
