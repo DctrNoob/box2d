@@ -20,10 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+#ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
+#endif
 
 #include "box2d/b2_settings.h"
-#include "ab/memory/memory.hpp"
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -33,12 +34,12 @@ b2Version b2_version = {2, 4, 1};
 // Memory allocators. Modify these to use your own allocator.
 void* b2Alloc_Default(int32 size)
 {
-	return ab::memory::physics_heap().allocate(size);
+	return malloc(size);
 }
 
 void b2Free_Default(void* mem)
 {
-	ab::memory::physics_heap().deallocate(mem);
+	free(mem);
 }
 
 // You can modify this to use your logging facility.
