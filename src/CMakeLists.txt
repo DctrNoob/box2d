@@ -105,7 +105,6 @@ target_include_directories(box2d
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../inc
     ${CMAKE_CURRENT_SOURCE_DIR}/../../cereal/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../glm
 )
 
 set_target_properties(box2d PROPERTIES
