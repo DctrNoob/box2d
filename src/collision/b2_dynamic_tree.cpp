@@ -30,12 +30,12 @@ b2DynamicTree::b2DynamicTree()
 	m_nodeCount = 0;
 	m_nodes = (b2TreeNode*)b2Alloc(m_nodeCapacity * sizeof(b2TreeNode));
 
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wclass-memaccess"
 #endif
 	memset(m_nodes, 0, m_nodeCapacity * sizeof(b2TreeNode));
-#ifdef __GNUC__
+#if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic pop
 #endif
 
