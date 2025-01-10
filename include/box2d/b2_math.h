@@ -129,7 +129,8 @@ struct B2_API b2Vec2
 		return b2Vec2(-y, x);
 	}
 
-	float x, y;
+	float x = 0.F;
+	float y = 0.F;
 };
 
 /// A 2D column vector with 3 elements.
@@ -172,7 +173,9 @@ struct B2_API b2Vec3
 		x *= s; y *= s; z *= s;
 	}
 
-	float x, y, z;
+	float x = 0.F;
+	float y = 0.F;
+	float z = 0.F;
 };
 
 /// A 2-by-2 matrix. Stored in column-major order.
@@ -338,7 +341,8 @@ struct B2_API b2Rot
 	}
 
 	/// Sine and cosine
-	float s, c;
+	float s = 0.F;
+	float c = 0.F;
 };
 
 /// A transform contains translation and rotation. It is used to represent

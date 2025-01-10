@@ -669,7 +669,7 @@ struct b2PositionSolverManifold
 
 	b2Vec2 normal;
 	b2Vec2 point;
-	float separation;
+	float separation = 0.F;
 };
 
 // Sequential solver.
