@@ -104,7 +104,6 @@ target_include_directories(box2d
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../../../inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../cereal/include
 )
 
 set_target_properties(box2d PROPERTIES
