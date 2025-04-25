@@ -25,12 +25,6 @@
 
 #include <stdio.h>
 
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wconversion"
-#elif defined(__GNUC__)
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-
 struct b2RopeStretch
 {
 	int32 i1, i2;

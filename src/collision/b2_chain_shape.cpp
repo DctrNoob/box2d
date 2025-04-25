@@ -28,12 +28,6 @@
 #include <new>
 #include <string.h>
 
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wconversion"
-#elif defined(__GNUC__)
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-
 b2ChainShape::~b2ChainShape()
 {
 	Clear();

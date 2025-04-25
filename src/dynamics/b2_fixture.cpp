@@ -31,12 +31,6 @@
 #include "box2d/b2_polygon_shape.h"
 #include "box2d/b2_world.h"
 
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wconversion"
-#elif defined(__GNUC__)
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-
 b2Fixture::b2Fixture()
 {
 	m_body = nullptr;

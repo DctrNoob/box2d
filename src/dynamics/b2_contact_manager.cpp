@@ -26,12 +26,6 @@
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_world_callbacks.h"
 
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wconversion"
-#elif defined(__GNUC__)
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-
 b2ContactFilter b2_defaultFilter;
 b2ContactListener b2_defaultListener;
 
