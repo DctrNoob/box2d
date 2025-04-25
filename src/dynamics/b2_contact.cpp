@@ -38,6 +38,12 @@
 #include "box2d/b2_time_of_impact.h"
 #include "box2d/b2_world.h"
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 b2ContactRegister b2Contact::s_registers[b2Shape::e_typeCount][b2Shape::e_typeCount];
 bool b2Contact::s_initialized = false;
 

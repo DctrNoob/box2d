@@ -22,6 +22,12 @@
 #include "box2d/b2_dynamic_tree.h"
 #include <string.h>
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 b2DynamicTree::b2DynamicTree()
 {
 	m_root = b2_nullNode;

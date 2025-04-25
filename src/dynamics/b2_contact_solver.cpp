@@ -28,6 +28,12 @@
 #include "box2d/b2_stack_allocator.h"
 #include "box2d/b2_world.h"
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 // Solver debugging is normally disabled because the block solver sometimes has to deal with a poorly conditioned effective mass matrix.
 #define B2_DEBUG_SOLVER 0
 

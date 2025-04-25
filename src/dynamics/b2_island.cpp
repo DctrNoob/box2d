@@ -32,6 +32,12 @@
 #include "b2_contact_solver.h"
 #include "b2_island.h"
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 /*
 Position Correction Notes
 =========================

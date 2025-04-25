@@ -22,6 +22,12 @@
 
 #include "box2d/b2_timer.h"
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 #if defined(_WIN32)
 
 double b2Timer::s_invFrequency = 0.0;

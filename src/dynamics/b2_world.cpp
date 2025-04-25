@@ -40,6 +40,12 @@
 
 #include <new>
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 b2World::b2World(const b2Vec2& gravity)
 {
 	m_destructionListener = nullptr;

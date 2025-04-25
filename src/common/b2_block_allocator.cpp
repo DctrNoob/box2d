@@ -25,6 +25,12 @@
 #include <string.h>
 #include <stddef.h>
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 static const int32 b2_chunkSize = 16 * 1024;
 static const int32 b2_maxBlockSize = 640;
 static const int32 b2_chunkArrayIncrement = 128;

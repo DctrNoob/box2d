@@ -29,6 +29,12 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 b2Version b2_version = {2, 4, 1};
 
 // Memory allocators. Modify these to use your own allocator.

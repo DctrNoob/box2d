@@ -23,6 +23,12 @@
 #include "box2d/b2_broad_phase.h"
 #include <string.h>
 
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wconversion"
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 b2BroadPhase::b2BroadPhase()
 {
 	m_proxyCount = 0;
