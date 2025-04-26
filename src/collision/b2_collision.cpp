@@ -22,6 +22,7 @@
 
 #include "box2d/b2_collision.h"
 #include "box2d/b2_distance.h"
+#include "../b2_internal.h"
 
 void b2WorldManifold::Initialize(const b2Manifold* manifold,
 						  const b2Transform& xfA, float radiusA,

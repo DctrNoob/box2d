@@ -3,7 +3,9 @@
 #ifndef B2_INTERNAL_H
 #define B2_INTERNAL_H
 
-#if defined(__clang__)
+#ifdef _MSC_VER
+  #pragma warning(disable : 4456) // Declaration hides previous declaration
+#elif defined(__clang__)
   #pragma clang diagnostic ignored "-Wconversion"
 #elif defined(__GNUC__)
   #pragma GCC diagnostic ignored "-Wconversion"
