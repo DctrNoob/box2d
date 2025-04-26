@@ -30,6 +30,7 @@
 #include "box2d/b2_edge_shape.h"
 #include "box2d/b2_polygon_shape.h"
 #include "box2d/b2_world.h"
+#include "../b2_internal.h"
 
 b2Fixture::b2Fixture()
 {

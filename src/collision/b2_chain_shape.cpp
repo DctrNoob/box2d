@@ -24,6 +24,7 @@
 #include "box2d/b2_edge_shape.h"
 
 #include "box2d/b2_block_allocator.h"
+#include "../b2_internal.h"
 
 #include <new>
 #include <string.h>

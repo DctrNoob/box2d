@@ -37,6 +37,7 @@
 #include "box2d/b2_time_of_impact.h"
 #include "box2d/b2_timer.h"
 #include "box2d/b2_world.h"
+#include "../b2_internal.h"
 
 #include <new>
 

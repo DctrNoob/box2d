@@ -22,6 +22,8 @@
 
 #include "box2d/b2_timer.h"
 
+#include "../b2_internal.h"
+
 #if defined(_WIN32)
 
 double b2Timer::s_invFrequency = 0.0;

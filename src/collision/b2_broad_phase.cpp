@@ -21,6 +21,8 @@
 // SOFTWARE.
 
 #include "box2d/b2_broad_phase.h"
+#include "../b2_internal.h"
+
 #include <string.h>
 
 b2BroadPhase::b2BroadPhase()

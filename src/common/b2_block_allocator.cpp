@@ -21,6 +21,8 @@
 // SOFTWARE.
 
 #include "box2d/b2_block_allocator.h"
+
+#include "../b2_internal.h"
 #include <limits.h>
 #include <string.h>
 #include <stddef.h>

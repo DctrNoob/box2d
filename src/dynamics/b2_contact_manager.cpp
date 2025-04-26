@@ -25,6 +25,7 @@
 #include "box2d/b2_contact_manager.h"
 #include "box2d/b2_fixture.h"
 #include "box2d/b2_world_callbacks.h"
+#include "../b2_internal.h"
 
 b2ContactFilter b2_defaultFilter;
 b2ContactListener b2_defaultListener;

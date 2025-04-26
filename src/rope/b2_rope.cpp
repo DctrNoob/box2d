@@ -22,6 +22,7 @@
 
 #include "box2d/b2_draw.h"
 #include "box2d/b2_rope.h"
+#include "../b2_internal.h"
 
 #include <stdio.h>
 

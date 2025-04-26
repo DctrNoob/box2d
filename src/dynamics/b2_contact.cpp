@@ -37,6 +37,7 @@
 #include "box2d/b2_shape.h"
 #include "box2d/b2_time_of_impact.h"
 #include "box2d/b2_world.h"
+#include "../b2_internal.h"
 
 b2ContactRegister b2Contact::s_registers[b2Shape::e_typeCount][b2Shape::e_typeCount];
 bool b2Contact::s_initialized = false;

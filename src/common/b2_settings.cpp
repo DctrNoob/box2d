@@ -25,6 +25,8 @@
 #endif
 
 #include "box2d/b2_settings.h"
+
+#include "../b2_internal.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>

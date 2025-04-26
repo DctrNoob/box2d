@@ -31,6 +31,7 @@
 
 #include "b2_contact_solver.h"
 #include "b2_island.h"
+#include "../b2_internal.h"
 
 /*
 Position Correction Notes
