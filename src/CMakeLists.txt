@@ -103,7 +103,6 @@ target_include_directories(box2d
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../../inc
 )
 
 set_target_properties(box2d PROPERTIES
