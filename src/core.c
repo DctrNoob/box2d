@@ -146,7 +146,9 @@ void b2Free( void* mem, int size )
 
 	if ( b2_freeFcn != NULL )
 	{
-		b2_freeFcn( mem );
+		B2_ASSERT( size > 0 );
+		unsigned int size32 = ( ( size - 1 ) | 0x1F ) + 1;
+		b2_freeFcn( mem, size32 );
 	}
 	else
 	{
