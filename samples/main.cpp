@@ -81,7 +81,7 @@ void* AllocFcn( uint32_t size, int32_t alignment )
 	return ptr;
 }
 
-void FreeFcn( void* mem )
+void FreeFcn( void* mem, unsigned int size )
 {
 #if defined( _MSC_VER ) || defined( __MINGW32__ ) || defined( __MINGW64__ )
 	_aligned_free( mem );
