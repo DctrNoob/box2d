@@ -268,15 +268,9 @@ public:
 		assert( bodyIndex == m_bodyCount );
 	}
 
-	void UpdateGui() override
+	bool DrawControls() override
 	{
-		float fontSize = ImGui::GetFontSize();
-		float height = 210.0f;
-		ImGui::SetNextWindowPos( ImVec2( 0.5f * fontSize, m_camera->height - height - 2.0f * fontSize ), ImGuiCond_Once );
-		ImGui::SetNextWindowSize( ImVec2( 220.0f, height ) );
-
-		ImGui::Begin( "Overlap Recovery", nullptr, ImGuiWindowFlags_NoResize );
-		ImGui::PushItemWidth( 100.0f );
+		ImGui::PushItemWidth( 6.0f * ImGui::GetFontSize() );
 
 		bool changed = false;
 		changed = changed || ImGui::SliderFloat( "Extent", &m_extent, 0.1f, 1.0f, "%.1f" );
@@ -293,7 +287,8 @@ public:
 		}
 
 		ImGui::PopItemWidth();
-		ImGui::End();
+
+		return true;
 	}
 
 	static Sample* Create( SampleContext* context )
@@ -313,6 +308,9 @@ public:
 
 static int sampleOverlapRecovery = RegisterSample( "Robustness", "Overlap Recovery", OverlapRecovery::Create );
 
+// A pyramid of 5cm squares. Stacking tiny objects is challenging for physics engines due to rotational effects.
+// This is also challenging for Box2D because of the AABB margin and linear slop are close to the shape size. This
+// leads to many collision pairs and some shape overlap.
 class TinyPyramid : public Sample
 {
 public:
@@ -362,7 +360,7 @@ public:
 
 	void Step() override
 	{
-		DrawTextLine( "%.1fcm squares", 200.0f * m_extent );
+		DrawScreenTextLine( "%.1fcm squares", 200.0f * m_extent );
 		Sample::Step();
 	}
 
@@ -485,15 +483,9 @@ public:
 		b2Joint_SetConstraintTuning( m_jointId2, m_constraintHertz, m_constraintDampingRatio );
 	}
 
-	void UpdateGui() override
+	bool DrawControls() override
 	{
-		float fontSize = ImGui::GetFontSize();
-		float height = 240.0f;
-		ImGui::SetNextWindowPos( ImVec2( 0.5f * fontSize, m_camera->height - height - 2.0f * fontSize ), ImGuiCond_Once );
-		ImGui::SetNextWindowSize( ImVec2( 320.0f, height ) );
-
-		ImGui::Begin( "Cart", nullptr, ImGuiWindowFlags_NoResize );
-		ImGui::PushItemWidth( 200.0f );
+		ImGui::PushItemWidth( 6.0f * ImGui::GetFontSize() );
 
 		bool changed = false;
 		ImGui::Text( "Contact" );
@@ -526,7 +518,8 @@ public:
 		}
 
 		ImGui::PopItemWidth();
-		ImGui::End();
+
+		return true;
 	}
 
 	static Sample* Create( SampleContext* context )
@@ -571,16 +564,19 @@ public:
 		b2ShapeDef shapeDef = b2DefaultShapeDef();
 		b2Polygon box = b2MakeBox( 0.5f, 0.5f );
 		b2PrismaticJointDef jointDef = b2DefaultPrismaticJointDef();
+
+		m_hertz = jointDef.base.constraintHertz;
+		m_dampingRatio = jointDef.base.constraintDampingRatio;
+
 		jointDef.base.bodyIdA = groundId;
 		jointDef.base.localFrameA.p = { 0.0f, 0.0f };
 		jointDef.base.localFrameB.p = { 0.0f, -0.6f };
 		jointDef.base.drawScale = 1.0f;
-		jointDef.base.constraintHertz = 240.0f;
 		jointDef.lowerTranslation = -6.0f;
 		jointDef.upperTranslation = 6.0f;
 		jointDef.enableLimit = true;
 
-		for ( int i = 0; i < 6; ++i )
+		for ( int i = 0; i < m_count; ++i )
 		{
 			b2BodyDef bodyDef = b2DefaultBodyDef();
 			bodyDef.position = { 0.0f, 0.6f + 1.2f * i };
@@ -590,7 +586,7 @@ public:
 			b2CreatePolygonShape( bodyId, &shapeDef, &box );
 
 			jointDef.base.bodyIdB = bodyId;
-			b2CreatePrismaticJoint( m_worldId, &jointDef );
+			m_jointIds[i] = b2CreatePrismaticJoint( m_worldId, &jointDef );
 
 			jointDef.base.bodyIdA = bodyId;
 			jointDef.base.localFrameA.p = { 0.0f, 0.6f };
@@ -600,10 +596,37 @@ public:
 		m_mouseForceScale = 100000.0f;
 	}
 
+	bool DrawControls() override
+	{
+		ImGui::PushItemWidth( 6.0f * ImGui::GetFontSize() );
+
+		bool changed = false;
+		ImGui::Text( "Multiple Prismatic" );
+		changed |= ImGui::SliderFloat( "Hertz##contact", &m_hertz, 0.0f, 480.0f, "%.f" );
+		changed |= ImGui::SliderFloat( "Damping Ratio##contact", &m_dampingRatio, 0.0f, 100.0f, "%.f" );
+
+		if ( changed )
+		{
+			for ( int i = 0; i < m_count; ++i )
+			{
+				b2Joint_SetConstraintTuning( m_jointIds[i], m_hertz, m_dampingRatio );
+			}
+		}
+
+		ImGui::PopItemWidth();
+
+		return true;
+	}
 	static Sample* Create( SampleContext* context )
 	{
 		return new MultiplePrismatic( context );
 	}
+
+	static inline constexpr int m_count = 6;
+
+	b2JointId m_jointIds[m_count];
+	float m_hertz;
+	float m_dampingRatio;
 };
 
 static int sampleMultiplePrismatic = RegisterSample( "Robustness", "Multiple Prismatic", MultiplePrismatic::Create );
